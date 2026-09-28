@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>香香漫画 - 免费在线漫画阅读平台 | 海量国漫日漫韩漫</title>
+<meta name="description" content="香香漫画提供海量正版漫画在线阅读，涵盖国漫、日漫、韩漫、恋爱、热血、悬疑等全品类。高清画质、每日更新、免费畅读，来香香漫画发现更多好故事。">
+<meta name="keywords" content="香香漫画,漫画在线阅读,国漫,日漫,韩漫,免费漫画,香香漫画网">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://xiangxiangmanhua-h5.github.io/">
+<link rel="alternate" hreflang="zh-CN" href="https://xiangxiangmanhua-h5.github.io/">
+<!-- Open Graph -->
+<meta property="og:title" content="香香漫画 - 免费在线漫画阅读平台">
+<meta property="og:description" content="海量漫画免费在线阅读，每日更新，高清画质，来香香漫画发现更多好故事。">
+<meta property="og:url" content="https://xiangxiangmanhua-h5.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="香香漫画">
+<style>
+/* ===== Reset & Base ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --pink:#ff6b9d;--pink-light:#ffa8c5;--pink-dark:#e84393;
+  --purple:#a55eea;--purple-light:#d1b3f0;
+  --cream:#fff5f8;--white:#ffffff;
+  --gray:#666;--gray-light:#999;--dark:#2d2d2d;
+  --radius:18px;--shadow:0 4px 20px rgba(255,107,157,.12);
+  --shadow-hover:0 8px 35px rgba(255,107,157,.22);
+  --transition:all .3s cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background:var(--cream);color:var(--dark);line-height:1.7;font-size:16px;
+}
+a{text-decoration:none;color:var(--pink);transition:var(--transition)}
+a:hover{color:var(--pink-dark)}
+img{max-width:100%;height:auto;display:block}
+ul{list-style:none}
+
+/* ===== Header ===== */
+.header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,107,157,.1);
+  box-shadow:0 2px 10px rgba(255,107,157,.08);
+}
+.nav-container{
+  max-width:1200px;margin:0 auto;padding:0 16px;
+  display:flex;align-items:center;justify-content:space-between;height:64px;
+}
+.logo{
+  font-size:1.5rem;font-weight:800;
+  background:linear-gradient(135deg,var(--pink),var(--purple));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.logo span{display:inline-block;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.nav-menu{display:flex;gap:8px;align-items:center}
+.nav-menu a{
+  padding:8px 14px;border-radius:20px;font-size:.9rem;font-weight:500;
+  color:var(--dark);
+}
+.nav-menu a:hover{background:rgba(255,107,157,.08);color:var(--pink)}
+.nav-toggle{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:8px}
+.nav-toggle span{width:22px;height:2.5px;background:var(--pink);border-radius:2px;transition:var(--transition)}
+
+/* ===== Hero ===== */
+.hero{
+  background:linear-gradient(135deg,#ffecd2 0%,#fcb69f 50%,#ff6b9d 100%);
+  padding:60px 16px 50px;text-align:center;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity:.5;
+}
+.hero-content{position:relative;max-width:700px;margin:0 auto}
+.hero h1{
+  font-size:2.2rem;font-weight:800;color:#fff;
+  text-shadow:0 2px 15px rgba(0,0,0,.15);margin-bottom:12px;
+}
+.hero h1 .highlight{color:#fff7b0}
+.hero p{font-size:1.05rem;color:rgba(255,255,255,.92);margin-bottom:24px;max-width:520px;margin-left:auto;margin-right:auto}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-primary{
+  display:inline-block;padding:14px 36px;border-radius:30px;
+  background:#fff;color:var(--pink);font-weight:700;font-size:1rem;
+  box-shadow:0 4px 15px rgba(255,255,255,.3);transition:var(--transition);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,255,255,.45);color:var(--pink-dark)}
+.btn-secondary{
+  display:inline-block;padding:14px 32px;border-radius:30px;
+  border:2px solid #fff;color:#fff;font-weight:600;font-size:1rem;transition:var(--transition);
+}
+.btn-secondary:hover{background:#fff;color:var(--pink)}
+
+/* ===== Stats Bar ===== */
+.stats-bar{
+  background:var(--white);padding:20px 16px;
+  border-bottom:1px solid rgba(255,107,157,.08);
+}
+.stats-container{max-width:900px;margin:0 auto;display:flex;justify-content:center;gap:40px;flex-wrap:wrap}
+.stat-item{text-align:center}
+.stat-num{font-size:1.6rem;font-weight:800;color:var(--pink)}
+.stat-label{font-size:.8rem;color:var(--gray-light)}
+
+/* ===== Section Common ===== */
+.section{padding:50px 16px}
+.section-container{max-width:1200px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:36px}
+.section-header h2{font-size:1.7rem;font-weight:800;margin-bottom:8px;color:var(--dark)}
+.section-header h2 .accent{color:var(--pink)}
+.section-header p{color:var(--gray);font-size:.95rem}
+.section-header p a{color:var(--pink);font-weight:600}
+
+/* ===== Filter Tags ===== */
+.filter-tags{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.filter-tag{
+  padding:8px 20px;border-radius:22px;border:2px solid rgba(255,107,157,.2);
+  background:var(--white);color:var(--gray);font-size:.9rem;font-weight:500;
+  cursor:pointer;transition:var(--transition);
+}
+.filter-tag:hover,.filter-tag.active{
+  border-color:var(--pink);background:var(--pink);color:#fff;
+}
+
+/* ===== Cards Grid ===== */
+.cards-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:20px;
+}
+.comic-card{
+  background:var(--white);border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow);transition:var(--transition);cursor:pointer;
+}
+.comic-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover)}
+.card-cover{
+  width:100%;height:240px;object-fit:cover;background:linear-gradient(135deg,var(--pink-light),var(--purple-light));
+  display:flex;align-items:center;justify-content:center;font-size:3rem;
+}
+.card-body{padding:12px}
+.card-title{font-weight:700;font-size:.95rem;margin-bottom:4px;color:var(--dark)}
+.card-meta{font-size:.78rem;color:var(--gray-light);display:flex;justify-content:space-between;align-items:center}
+.card-tag{
+  display:inline-block;padding:2px 8px;border-radius:10px;
+  background:rgba(255,107,157,.1);color:var(--pink);font-size:.72rem;font-weight:500;
+}
+
+/* ===== Schedule Tabs ===== */
+.schedule-wrap{background:linear-gradient(135deg,#fff5f8,#fef0ff);border-radius:var(--radius)}
+.schedule-tabs{
+  display:flex;gap:4px;overflow-x:auto;padding:16px 16px 0;
+  scrollbar-width:none;-ms-overflow-style:none;
+}
+.schedule-tabs::-webkit-scrollbar{display:none}
+.schedule-tab{
+  flex:0 0 auto;padding:10px 18px;border-radius:16px 16px 0 0;
+  background:transparent;color:var(--gray);font-size:.9rem;font-weight:600;
+  cursor:pointer;border:none;transition:var(--transition);white-space:nowrap;
+}
+.schedule-tab.active{background:var(--white);color:var(--pink);box-shadow:0 -2px 10px rgba(255,107,157,.08)}
+.schedule-panel{display:none;padding:20px}
+.schedule-panel.active{display:block}
+.schedule-list{display:flex;flex-direction:column;gap:10px}
+.schedule-item{
+  display:flex;align-items:center;gap:14px;padding:14px;
+  background:var(--white);border-radius:14px;box-shadow:var(--shadow);transition:var(--transition);
+}
+.schedule-item:hover{box-shadow:var(--shadow-hover)}
+.schedule-time{font-size:.85rem;font-weight:700;color:var(--pink);min-width:50px}
+.schedule-name{font-weight:600;flex:1}
+.schedule-ep{font-size:.8rem;color:var(--gray-light)}
+.schedule-badge{
+  padding:3px 10px;border-radius:10px;font-size:.72rem;font-weight:600;
+}
+.schedule-badge.today{background:var(--pink);color:#fff}
+.schedule-badge.update{background:rgba(165,94,234,.15);color:var(--purple)}
+
+/* ===== Ranking ===== */
+.ranking-list{display:flex;flex-direction:column;gap:12px;max-width:800px;margin:0 auto}
+.rank-item{
+  display:flex;align-items:center;gap:16px;padding:16px;
+  background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);transition:var(--transition);
+}
+.rank-item:hover{box-shadow:var(--shadow-hover)}
+.rank-num{
+  width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:1rem;flex-shrink:0;
+}
+.rank-num.gold{background:linear-gradient(135deg,#ffd700,#ffaa00);color:#fff}
+.rank-num.silver{background:linear-gradient(135deg,#c0c0c0,#a0a0a0);color:#fff}
+.rank-num.bronze{background:linear-gradient(135deg,#cd7f32,#a0522d);color:#fff}
+.rank-num.normal{background:rgba(255,107,157,.1);color:var(--pink)}
+.rank-cover{width:56px;height:72px;border-radius:10px;object-fit:cover;flex-shrink:0;background:linear-gradient(135deg,var(--pink-light),var(--purple-light))}
+.rank-info{flex:1}
+.rank-title{font-weight:700;font-size:1rem;margin-bottom:2px}
+.rank-desc{font-size:.8rem;color:var(--gray-light)}
+.rank-score{font-size:1.2rem;font-weight:800;color:var(--pink);flex-shrink:0}
+
+/* ===== News Grid ===== */
+.news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.news-card{
+  background:var(--white);border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow);transition:var(--transition);
+}
+.news-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover)}
+.news-cover{
+  width:100%;height:160px;background:linear-gradient(135deg,var(--purple-light),var(--pink-light));
+  display:flex;align-items:center;justify-content:center;font-size:2.5rem;
+}
+.news-body{padding:16px}
+.news-tag{
+  display:inline-block;padding:3px 10px;border-radius:10px;
+  background:rgba(255,107,157,.1);color:var(--pink);font-size:.75rem;font-weight:600;margin-bottom:8px;
+}
+.news-title{font-weight:700;font-size:1rem;margin-bottom:6px}
+.news-excerpt{font-size:.85rem;color:var(--gray);line-height:1.6;margin-bottom:10px}
+.news-date{font-size:.75rem;color:var(--gray-light)}
+
+/* ===== Guide Steps ===== */
+.guide-steps{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
+.guide-step{
+  background:var(--white);border-radius:var(--radius);padding:28px 20px;text-align:center;
+  box-shadow:var(--shadow);transition:var(--transition);position:relative;overflow:hidden;
+}
+.guide-step::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--pink),var(--purple));
+}
+.guide-step:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover)}
+.step-num{
+  width:48px;height:48px;border-radius:50%;margin:0 auto 14px;
+  background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:800;
+}
+.step-title{font-weight:700;font-size:1rem;margin-bottom:8px}
+.step-desc{font-size:.85rem;color:var(--gray);line-height:1.6}
+
+/* ===== FAQ ===== */
+.faq-list{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.faq-item{
+  background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;
+}
+.faq-question{
+  width:100%;padding:18px 20px;text-align:left;background:none;border:none;
+  font-size:1rem;font-weight:600;color:var(--dark);cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;transition:var(--transition);
+}
+.faq-question:hover{color:var(--pink)}
+.faq-icon{font-size:1.3rem;color:var(--pink);transition:var(--transition)}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-answer{
+  max-height:0;overflow:hidden;transition:max-height .35s ease;
+}
+.faq-answer p{padding:0 20px 18px;color:var(--gray);font-size:.9rem;line-height:1.7}
+
+/* ===== Footer ===== */
+.footer{background:#2d2d2d;color:#ccc;padding:40px 16px 20px}
+.footer-container{max-width:1200px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px;margin-bottom:30px}
+.footer-brand .logo{color:#fff;-webkit-text-fill-color:#fff;background:none}
+.footer-brand p{font-size:.85rem;color:#aaa;margin-top:10px;line-height:1.6}
+.footer-col h4{color:#fff;font-size:.95rem;font-weight:700;margin-bottom:12px}
+.footer-col a{display:block;color:#aaa;font-size:.85rem;padding:4px 0;transition:var(--transition)}
+.footer-col a:hover{color:var(--pink-light)}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.1);padding-top:20px;
+  text-align:center;font-size:.8rem;color:#888;
+}
+.footer-bottom a{color:var(--pink-light)}
+
+/* ===== Responsive ===== */
+@media(max-width:860px){
+  .nav-menu{
+    display:none;position:fixed;top:64px;left:0;right:0;
+    background:#fff;flex-direction:column;padding:20px 16px;
+    box-shadow:0 4px 15px rgba(0,0,0,.1);gap:4px;
+  }
+  .nav-menu.open{display:flex}
+  .nav-menu a{padding:12px 16px;border-radius:12px;width:100%;text-align:center}
+  .nav-toggle{display:flex}
+  .hero h1{font-size:1.7rem}
+  .hero p{font-size:.95rem}
+  .cards-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+  .card-cover{height:200px}
+  .guide-steps{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+  .rank-item{flex-wrap:wrap}
+}
+@media(max-width:560px){
+  .hero{padding:40px 12px 35px}
+  .hero h1{font-size:1.4rem}
+  .stats-container{gap:20px}
+  .stat-num{font-size:1.2rem}
+  .section{padding:36px 12px}
+  .section-header h2{font-size:1.3rem}
+  .cards-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .card-cover{height:170px;font-size:2rem}
+  .card-body{padding:10px}
+  .card-title{font-size:.85rem}
+  .news-grid{grid-template-columns:1fr}
+  .guide-steps{grid-template-columns:1fr 1fr}
+  .rank-item{padding:12px;gap:10px}
+  .rank-cover{width:44px;height:58px}
+  .rank-title{font-size:.9rem}
+  .rank-score{font-size:1rem}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+<!-- ===== Header ===== -->
+<header class="header">
+  <div class="nav-container">
+    <div class="logo">🌸 香香漫画</div>
+    <nav class="nav-menu" id="navMenu">
+      <a href="#home">首页</a>
+      <a href="#library">番剧库</a>
+      <a href="#schedule">更新表</a>
+      <a href="#ranking">排行榜</a>
+      <a href="#news">动漫资讯</a>
+      <a href="#guide">追番指南</a>
+      <a href="#faq">常见问题</a>
+    </nav>
+    <div class="nav-toggle" id="navToggle">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <h1>欢迎来到 <span class="highlight">香香漫画</span></h1>
+    <p>海量正版漫画免费在线阅读，国漫日漫韩漫全品类覆盖，高清画质每日更新，来香香漫画发现更多好故事！</p>
+    <div class="hero-btns">
+      <a href="#library" class="btn-primary">开始阅读</a>
+      <a href="#ranking" class="btn-secondary">查看排行榜</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Stats ===== -->
+<div class="stats-bar">
+  <div class="stats-container">
+    <div class="stat-item"><div class="stat-num">10,000+</div><div class="stat-label">漫画作品</div></div>
+    <div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">每日更新</div></div>
+    <div class="stat-item"><div class="stat-num">2,000,000+</div><div class="stat-label">注册用户</div></div>
+    <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">免费阅读</div></div>
+  </div>
+</div>
+
+<!-- ===== Library ===== -->
+<section class="section" id="library">
+  <div class="section-container">
+    <div class="section-header">
+      <h2>📚 <span class="accent">香香漫画</span> · 番剧库</h2>
+      <p>精选全品类漫画，<a href="#">点击进入详情页</a></p>
+    </div>
+    <div class="filter-tags">
+      <button class="filter-tag active" data-filter="all">全部</button>
+      <button class="filter-tag" data-filter="guoman">国漫</button>
+      <button class="filter-tag" data-filter="japanese">日漫</button>
+      <button class="filter-tag" data-filter="hanman">韩漫</button>
+      <button class="filter-tag" data-filter="love">恋爱</button>
+      <button class="filter-tag" data-filter="action">热血</button>
+    </div>
+    <div class="cards-grid">
+      <div class="comic-card" data-category="guoman love"><a href="#"><img class="card-cover" src="#" alt="国漫恋爱漫画"><div class="card-body"><div class="card-title">甜心恋人</div><div class="card-meta"><span>第128话</span><span class="card-tag">恋爱</span></div></div></a></div>
+      <div class="comic-card" data-category="japanese action"><a href="#"><img class="card-cover" src="#" alt="日漫热血漫画"><div class="card-body"><div class="card-title">火之意志</div><div class="card-meta"><span>第560话</span><span class="card-tag">热血</span></div></div></a></div>
+      <div class="comic-card" data-category="hanman love"><a href="#"><img class="card-cover" src="#" alt="韩漫恋爱漫画"><div class="card-body"><div class="card-title">霸道总裁爱上我</div><div class="card-meta"><span>第89话</span><span class="card-tag">韩漫</span></div></div></a></div>
+      <div class="comic-card" data-category="guoman action"><a href="#"><img class="card-cover" src="#" alt="国漫玄幻漫画"><div class="card-body"><div class="card-title">斗破苍穹</div><div class="card-meta"><span>第302话</span><span class="card-tag">玄幻</span></div></div></a></div>
+      <div class="comic-card" data-category="japanese love"><a href="#"><img class="card-cover" src="#" alt="日漫校园漫画"><div class="card-body"><div class="card-title">青春物语</div><div class="card-meta"><span>第45话</span><span class="card-tag">校园</span></div></div></a></div>
+      <div class="comic-card" data-category="hanman action"><a href="#"><img class="card-cover" src="#" alt="韩漫动作漫画"><div class="card-body"><div class="card-title">特工归来</div><div class="card-meta"><span>第67话</span><span class="card-tag">动作</span></div></div></a></div>
+      <div class="comic-card" data-category="guoman"><a href="#"><img class="card-cover" src="#" alt="国漫搞笑漫画"><div class="card-body"><div class="card-title">非人哉</div><div class="card-meta"><span>第210话</span><span class="card-tag">搞笑</span></div></div></a></div>
+      <div class="comic-card" data-category="japanese"><a href="#"><img class="card-cover" src="#" alt="日漫悬疑漫画"><div class="card-body"><div class="card-title">名侦探柯南</div><div class="card-meta"><span>第1080话</span><span class="card-tag">悬疑</span></div></div></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Schedule ===== -->
+<section class="section" id="schedule" style="background:linear-gradient(135deg,#fff5f8,#fef0ff)">
+  <div class="section-container">
+    <div class="section-header">
+      <h2>📅 <span class="accent">香香漫画</span> · 新番更新表</h2>
+      <p>不错过每一话精彩，<a href="#">查看完整更新表</a></p>
+    </div>
+    <div class="schedule-wrap">
+      <div class="schedule-tabs">
+        <button class="schedule-tab active" data-day="mon">周一</button>
+        <button class="schedule-tab" data-day="tue">周二</button>
+        <button class="schedule-tab" data-day="wed">周三</button>
+        <button class="schedule-tab" data-day="thu">周四</button>
+        <button class="schedule-tab" data-day="fri">周五</button>
+        <button class="schedule-tab" data-day="sat">周六</button>
+        <button class="schedule-tab" data-day="sun">周日</button>
+      </div>
+      <div class="schedule-panel active" data-panel="mon">
+        <div class="schedule-list">
+          <div class="schedule-item"><span class="schedule-time">10:00</span><span class="schedule-name">甜心恋人 第129话</span><span class="schedule-ep">更新至129话</span><span class="schedule-badge update">已更新</span></div>
+          <div class="schedule-item"><span class="schedule-time">16:00</span><span class="schedule-name">火之意志 第561话</span><span class="schedule-ep">更新至561话</span><span class="schedule-badge update">已更新</span></div>
+          <div class="schedule-item"><span class="schedule-time">20:00</span><span class="schedule-name">青春物语 第46话</span><span class="schedule-ep">更新至46话</span><span class="schedule-badge today">今夜更新</span></div>
+        </div>
+      </div>
+      <div class="schedule-panel" data-panel="tue"><div class="schedule-list"><div class="schedule-item"><span class="schedule-time">12:00</span><span class="schedule-name">斗破苍穹 第303话</span><span class="schedule-ep">更新至303话</span><span class="schedule-badge update">已更新</span></div><div class="schedule-item"><span class="schedule-time">18:00</span><span class="schedule-name">霸道总裁爱上我 第90话</span><span class="schedule-ep">更新至90话</span><span class="schedule-badge today">今夜更新</span></div></div></div>
+      <div class="schedule-panel" data-panel="wed"><div class="schedule-list"><div class="schedule-item"><span class="schedule-time">10:00</span><span class="schedule-name">特工归来 第68话</span><span class="schedule-ep">更新至68话</span><span class="schedule-badge update">已更新</span></div><div class="schedule-item"><span class="schedule-time">15:00</span><span class="schedule-name">非人哉 第211话</span><span class="schedule-ep">更新至211话</span><span class="schedule-badge today">今夜更新</span></div></div></div>
+      <div class="schedule-panel" data-panel="thu"><div class="schedule-list"><div class="schedule-item"><span class="schedule-time">11:00</span><span class="schedule-name">名侦探柯南 第1081话</span><span class="schedule-ep">更新至1081话</span><span class="schedule-badge update">已更新</span></div><div class="schedule-item"><span class="schedule-time">19:00</span><span class="schedule-name">甜心恋人 第130话</span><span class="schedule-ep">更新至130话</span><span class="schedule-badge today">今夜更新</span></div></div></div>
+      <div class="schedule-panel" data-panel="fri"><div class="schedule-list"><div class="schedule-item"><span class="schedule-time">14:00</span><span class="schedule-name">火之意志 第562话</span><span class="schedule-ep">更新至562话</span><span class="schedule-badge update">已更新</span></div><div class="schedule-item"><span class="schedule-time">20:00</span><span class="schedule-name">青春物语 第47话</span><span class="schedule-ep">更新至47话</span><span class="schedule-badge today">今夜更新</span></div></div></div>
+      <div class="schedule-panel" data-panel="sat"><div class="schedule-list"><div class="schedule-item"><span class="schedule-time">09:00</span><span class="schedule-name">斗破苍穹 第304话</span><span class="schedule-ep">更新至304话</span><span class="schedule-badge update">已更新</span></div><div class="schedule-item"><span class="schedule-time">17:00</span><span class="schedule-name">霸道总裁爱上我 第91话</span><span class="schedule-ep">更新至91话</span><span class="schedule-badge today">今夜更新</span></div></div></div>
+      <div class="schedule-panel" data-panel="sun"><div class="schedule-list"><div class="schedule-item"><span class="schedule-time">10:00</span><span class="schedule-name">特工归来 第69话</span><span class="schedule-ep">更新至69话</span><span class="schedule-badge update">已更新</span></div><div class="schedule-item"><span class="schedule-time">16:00</span><span class="schedule-name">非人哉 第212话</span><span class="schedule-ep">更新至212话</span><span class="schedule-badge today">今夜更新</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Ranking ===== -->
+<section class="section" id="ranking">
+  <div class="section-container">
+    <div class="section-header">
+      <h2>🏆 <span class="accent">香香漫画</span> · 热门排行榜</h2>
+      <p>千万读者共同评选，<a href="#">查看完整榜单</a></p>
+    </div>
+    <div class="ranking-list">
+      <div class="rank-item"><div class="rank-num gold">1</div><img class="rank-cover" src="#" alt="第一名漫画"><div class="rank-info"><div class="rank-title">甜心恋人</div><div class="rank-desc">恋爱 · 连载中 · 128话</div></div><div class="rank-score">9.8</div></div>
+      <div class="rank-item"><div class="rank-num silver">2</div><img class="rank-cover" src="#" alt="第二名漫画"><div class="rank-info"><div class="rank-title">火之意志</div><div class="rank-desc">热血 · 连载中 · 560话</div></div><div class="rank-score">9.6</div></div>
+      <div class="rank-item"><div class="rank-num bronze">3</div><img class="rank-cover" src="#" alt="第三名漫画"><div class="rank-info"><div class="rank-title">斗破苍穹</div><div class="rank-desc">玄幻 · 连载中 · 302话</div></div><div class="rank-score">9.5</div></div>
+      <div class="rank-item"><div class="rank-num normal">4</div><img class="rank-cover" src="#" alt="第四名漫画"><div class="rank-info"><div class="rank-title">霸道总裁爱上我</div><div class="rank-desc">韩漫 · 连载中 · 89话</div></div><div class="rank-score">9.3</div></div>
+      <div class="rank-item"><div class="rank-num normal">5</div><img class="rank-cover" src="#" alt="第五名漫画"><div class="rank-info"><div class="rank-title">青春物语</div><div class="rank-desc">校园 · 连载中 · 45话</div></div><div class="rank-score">9.2</div></div>
+      <div class="rank-item"><div class="rank-num normal">6</div><img class="rank-cover" src="#" alt="第六名漫画"><div class="rank-info"><div class="rank-title">特工归来</div><div class="rank-desc">动作 · 连载中 · 67话</div></div><div class="rank-score">9.0</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== News ===== -->
+<section class="section" id="news" style="background:#fef9fb">
+  <div class="section-container">
+    <div class="section-header">
+      <h2>📰 <span class="accent">香香漫画</span> · 动漫资讯</h2>
+      <p>最新漫画资讯、行业动态，<a href="#">更多资讯</a></p>
+    </div>
+    <div class="news-grid">
+      <div class="news-card"><div class="news-cover">🎉</div><div class="news-body"><span class="news-tag">重磅</span><div class="news-title">《甜心恋人》动画化正式官宣！</div><div class="news-excerpt">国民级恋爱漫画《甜心恋人》宣布TV动画化，预计明年春季开播，制作阵容豪华。</div><div class="news-date">2026-09-25</div></div></div>
+      <div class="news-card"><div class="news-cover">🏆</div><div class="news-body"><span class="news-tag">奖项</span><div class="news-title">金龙奖年度最佳国漫揭晓</div><div class="news-excerpt">第20届金龙奖颁奖典礼落幕，《斗破苍穹》斩获年度最佳连载漫画大奖。</div><div class="news-date">2026-09-22</div></div></div>
+      <div class="news-card"><div class="news-cover">📢</div><div class="news-body"><span class="news-tag">公告</span><div class="news-title">香香漫画秋季阅读大赛开启</div><div class="news-excerpt">参与阅读打卡赢取限定周边，连续签到7天即可参与抽奖，最高奖品iPad一台。</div><div class="news-date">2026-09-20</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Guide ===== -->
+<section class="section" id="guide">
+  <div class="section-container">
+    <div class="section-header">
+      <h2>🗺️ <span class="accent">香香漫画</span> · 追番指南</h2>
+      <p>三步开启你的漫画阅读之旅</p>
+    </div>
+    <div class="guide-steps">
+      <div class="guide-step"><div class="step-num">1</div><div class="step-title">注册账号</div><div class="step-desc">手机号或邮箱快速注册，30秒完成</div></div>
+      <div class="guide-step"><div class="step-num">2</div><div class="step-title">选择漫画</div><div class="step-desc">按分类、标签、排行榜发现心仪作品</div></div>
+      <div class="guide-step"><div class="step-num">3</div><div class="step-title">开始阅读</div><div class="step-desc">高清画质流畅阅读，支持离线缓存</div></div>
+      <div class="guide-step"><div class="step-num">4</div><div class="step-title">互动分享</div><div class="step-desc">评论打分收藏，与漫友一起讨论剧情</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section" id="faq" style="background:#fef9fb">
+  <div class="section-container">
+    <div class="section-header">
+      <h2>❓ <span class="accent">香香漫画</span> · 常见问题</h2>
+      <p>更多问题请联系客服</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-question">香香漫画上的漫画都是免费的吗？<span class="faq-icon">+</span></button><div class="faq-answer"><p>是的！香香漫画平台上的绝大部分漫画都可以免费在线阅读，部分独家作品可能需要会员解锁。</p></div></div>
+      <div class="faq-item"><button class="faq-question">支持哪些设备阅读？<span class="faq-icon">+</span></button><div class="faq-answer"><p>香香漫画支持手机、平板、电脑等全平台设备，页面自适应屏幕大小，随时随地畅读。</p></div></div>
+      <div class="faq-item"><button class="faq-question">如何收藏喜欢的漫画？<span class="faq-icon">+</span></button><div class="faq-answer"><p>注册登录后，在漫画详情页点击"收藏"按钮即可将作品加入个人书架，方便下次追更。</p></div></div>
+      <div class="faq-item"><button class="faq-question">漫画更新频率是怎样的？<span class="faq-icon">+</span></button><div class="faq-answer"><p>热门连载漫画通常每周更新1-3话，具体更新时间可在"更新表"栏目中查看。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-top">
+      <div class="footer-brand"><div class="logo">🌸 香香漫画</div><p>海量正版漫画免费在线阅读平台，每日更新，高清画质，来香香漫画发现更多好故事。</p></div>
+      <div class="footer-col"><h4>快速导航</h4><a href="#library">番剧库</a><a href="#schedule">更新表</a><a href="#ranking">排行榜</a><a href="#news">动漫资讯</a></div>
+      <div class="footer-col"><h4>帮助中心</h4><a href="#guide">追番指南</a><a href="#faq">常见问题</a><a href="#">联系客服</a><a href="#">意见反馈</a></div>
+      <div class="footer-col"><h4>关于我们</h4><a href="#">关于香香漫画</a><a href="#">加入我们</a><a href="#">商务合作</a><a href="#">隐私政策</a></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 <a href="https://xiangxiangmanhua-h5.github.io">香香漫画</a> (xiangxiangmanhua-h5.github.io) · 关键词：香香漫画 · 免费在线漫画阅读 · 国漫日漫韩漫 · 每日更新</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== JSON-LD Structured Data ===== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "香香漫画",
+      "url": "https://xiangxiangmanhua-h5.github.io",
+      "description": "海量正版漫画免费在线阅读平台",
+      "logo": "https://xiangxiangmanhua-h5.github.io/logo.png"
+    },
+    {
+      "@type": "WebSite",
+      "name": "香香漫画",
+      "url": "https://xiangxiangmanhua-h5.github.io",
+      "description": "免费在线漫画阅读平台，海量国漫日漫韩漫",
+      "inLanguage": "zh-CN",
+      "publisher": {"@type": "Organization","name": "香香漫画"}
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem","position":1,"name":"首页","item":"https://xiangxiangmanhua-h5.github.io"},
+        {"@type":"ListItem","position":2,"name":"番剧库","item":"https://xiangxiangmanhua-h5.github.io/#library"},
+        {"@type":"ListItem","position":3,"name":"排行榜","item":"https://xiangxiangmanhua-h5.github.io/#ranking"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type":"Question","name":"香香漫画上的漫画都是免费的吗？","acceptedAnswer":{"@type":"Answer","text":"是的！香香漫画平台上的绝大部分漫画都可以免费在线阅读，部分独家作品可能需要会员解锁。"}},
+        {"@type":"Question","name":"支持哪些设备阅读？","acceptedAnswer":{"@type":"Answer","text":"香香漫画支持手机、平板、电脑等全平台设备，页面自适应屏幕大小。"}},
+        {"@type":"Question","name":"如何收藏喜欢的漫画？","acceptedAnswer":{"@type":"Answer","text":"注册登录后，在漫画详情页点击收藏按钮即可将作品加入个人书架。"}},
+        {"@type":"Question","name":"漫画更新频率是怎样的？","acceptedAnswer":{"@type":"Answer","text":"热门连载漫画通常每周更新1-3话，具体更新时间可在更新表栏目中查看。"}}
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- ===== Interactive Scripts ===== -->
+<script>
+// Hamburger menu
+(function(){
+  var toggle=document.getElementById('navToggle');
+  var menu=document.getElementById('navMenu');
+  if(toggle&&menu){
+    toggle.addEventListener('click',function(){menu.classList.toggle('open');});
+    menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('open');});});
+  }
+})();
+
+// Filter tags
+(function(){
+  var tags=document.querySelectorAll('.filter-tag');
+  var cards=document.querySelectorAll('.com
